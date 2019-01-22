@@ -1,25 +1,65 @@
-# Site settings
-name: Kangkang
-email:
-author: Kang
-url:
-resume_site:
-github:
-baseurl: "/Kangkang"
-description: Actually, less is more!
-meta_description: 学而不思则罔;思而不学则殆;生命不止;折腾不休
-motto: It's our wits that make us men.
-banner: 学而不思则罔，思而不学则殆。
+# highlighter: pygments
+highlighter: rouge
 
-#permalink: /:categories/:year/:month/:day/:title/
-permalink: /:year/:month/:day/:title/
-paginate: 10
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+# markdown: kramdown
+# kramdown:
+#     input: GFM
+#     syntax_highlighter: rouge
 
-exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+gems: [jekyll-paginate]
+paginate: 7
+paginate_path: "page:num"
+layout: post
+permalink: /:categories/:title
+excerpt_separator: "[-----]"
 
-github_username: kangkang0820
+# mode: dev
+mode: product
+url: https://unifreak.github.io/
+devurl: http://localhost:4000/
+name: UniFreak
+title: UniFreak | Another yet unique freak is showing a freakshow
+description: "Fanghao's personal weblog, on coding or such stuff"
 
-# Build settings
-markdown: kramdown
+my:
+    displayName: UniFreak
+    realName: FangHao
+    realName_cn: 方浩
+    jobTitle: "PHP Coder"
+    contact:
+        qq: 744910240
+        email: fanghao90s@gmail.com
+        github: http://www.github.com/UniFreak
+        qzone: http://744910240.qzone.qq.com
+        pinterest: https://www.pinterest.com/miblah/
+        tel: 15532915861
+        address:
+            country: China
+            state: Beijing
+            city: Beijing
+            distribute: ChaoYang
+            postcode: 000000
+            cell: "AnHuiLi"
+    skills:
+        frontend: ["HTML | Markdown", "CSS | SASS", "JS | jQuery", "Bootstrap"]
+        backend: ["PHP", "MySQL", "Redis", "Regex", "Laravel", "OSC"]
+        tools: ["Sublime Text", "Git | Github", "Linux", "Jekyll | Liquid"]
 
-baidu_analysis: 94be4b0f9fc5d94cc0d0415ea6761ae9
+collections:
+    qqGroupGuide:
+        output: true
+
+defaults:
+  - scope:
+        path: ""
+        type: "posts"
+    values:
+        excerpt: "{{ page.content }} | slice: 0 300"
+  - scope:
+        path: ""
+        type: "qqGroupGuide"
+    values:
+        layout: markdownreader_bare

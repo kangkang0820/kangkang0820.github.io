@@ -1,45 +1,54 @@
-<header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">
-        <img src="{{ '/styles/images/logo.jpg' | prepend: site.baseurl }}">
-      </a>
+<header id="l-header">
+    <div class="container">
+        <div class="row logo">
+            <div class="col-lg-7">
+                <h1>{{ site.name }}</h1>
+            </div>
+
+
+            <div class="col-lg-5">
+                <p>On the way to death</p>
+                <p>On the way of learning</p>
+            </div>
+        </div>
+
+        <div class="row navicon">
+            <a href=""><i class="fa fa-navicon"></i></a>
+        </div>
+
+        <div class="row navbar">
+            <nav class="col-lg-8 col-md-8 col-xs-12">
+                <ul class="row">
+                    <li class="col-lg-3"><a href="{{crturl}}">HOME</a></li>
+                    <li class="col-lg-3">
+                        <ul class="subnav">
+                            <a href="javascript:void(0)">POST</a>
+                            <li><a href="{{crturl}}category">CATEGORY</a></li>
+                            <li><a href="{{crturl}}tag">TAG</a></li>
+                        </ul>
+                    </li>
+                    <li class="col-lg-3"><a href="{{crturl}}about">ABOUT</a></li>
+                    <li class="col-lg-3"><a href="{{crturl}}building">PLAY GROUND</a></li>
+                </ul>
+            </nav>
+
+            <div class="search col-lg-4 col-md-4 col-xs-12">
+                <form id="dummySearch">
+                    <label for="search"></label>
+                    <input id="search" name="serach" type="text" placeholder="Not That Dummy Search">
+                    <i class="fa fa-search"></i>
+                </form>
+                <script>
+                $(function(){
+                    $('#dummySearch').submit(function(e) {
+                        e.preventDefault();
+                        keyword = $('#search').val();
+                        url = 'https://www.google.com.hk/search?q=site%3Aunifreak.github.io+' + keyword;
+                        location.href = url;
+                    })
+                })
+                </script>
+            </div>
+        </div>
     </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">    
-        <li>
-          <a href="{{ '/' | prepend: site.baseurl }}">Home</a>
-        </li>
-        <li>
-          <a href="{{ '/categories/' | prepend: site.baseurl }}">大类分解</a>
-        </li>
-        <li>
-          <a href="{{ '/tag' | prepend: site.baseurl }}">小类内聚</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a rel="nofollow" target="_blank" href="{{site.github}}">Github</a></li>
-            <li><a rel="nofollow" target="_blank" href="{{site.resume_site}}">关于作者</a></li>
-            <li><a rel="nofollow" href="{{ '/books' | prepend: site.baseurl }}">我的书单</a></li>
-            <li><a rel="nofollow" href="http://www.hifreud.com/domains/">域名管理</a></li>
-            <li><a rel="nofollow" href="{{ '/reference' | prepend: site.baseurl }}">推荐博客</a></li>
-            <li><a href="{{ '/feed.xml' | prepend: site.baseurl }}">RSS订阅</a></li>
-            <li class="divider"></li>
-            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">本项目</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </header>
