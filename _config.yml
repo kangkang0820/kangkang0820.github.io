@@ -17,7 +17,7 @@ excerpt_separator: "[-----]"
 
 # mode: dev
 mode: product
-url: https://unifreak.github.io/
+url: https://kangkang0820.github.io/
 devurl: http://localhost:4000/
 name: kangkang
 title: kangkang | Another yet unique freak is showing a freakshow
@@ -41,7 +41,7 @@ my:
 
     skills:
         speciality: [“EEG data analysis”，“spss”,"R","Matlab","Python" ]
-  
+
 
 collections:
     qqGroupGuide:
