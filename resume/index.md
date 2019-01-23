@@ -30,8 +30,11 @@ layout: markdownreader_bare
 
 
 #自我评价
+- 略微执着、自认为还算坚强
+- 物质上贫穷（目前），但在追求梦想的道路上不折不挠
 
-
+#座右铭
+- 跨越阶级的奋斗从来都不是一帆风顺
 
 
 [en]: http://bornprettystore.com
