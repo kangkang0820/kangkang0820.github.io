@@ -13,9 +13,6 @@ layout: markdownreader_bare
 
 - 2017.9~今 西南大学心理学部</small> 基础心理学
 
-#工作经历
-
-###长沙市岳麓区马思特教育培训学校 <small>2016.3~2017.5</small>
 
 
 
