@@ -19,33 +19,29 @@ excerpt_separator: "[-----]"
 mode: product
 url: https://unifreak.github.io/
 devurl: http://localhost:4000/
-name: UniFreak
-title: UniFreak | Another yet unique freak is showing a freakshow
-description: "Fanghao's personal weblog, on coding or such stuff"
+name: kangkang
+title: kangkang | Another yet unique freak is showing a freakshow
+description: "yukang's personal weblog, on coding or such stuff"
 
 my:
-    displayName: UniFreak
-    realName: FangHao
-    realName_cn: 方浩
-    jobTitle: "PHP Coder"
+    displayName: kangkang
+    realName: YuKang
+    realName_cn: 余康
+    jobTitle: "psychology graduate student"
     contact:
-        qq: 744910240
-        email: fanghao90s@gmail.com
-        github: http://www.github.com/UniFreak
-        qzone: http://744910240.qzone.qq.com
-        pinterest: https://www.pinterest.com/miblah/
-        tel: 15532915861
+        qq: 2500765857
+        email: 2500765857@qq.com
+        github: http://www.github.com/kangkang0820
+        qzone: http://2500765857.qzone.qq.com
         address:
             country: China
-            state: Beijing
-            city: Beijing
-            distribute: ChaoYang
-            postcode: 000000
-            cell: "AnHuiLi"
+            state: chongqing
+            city: chongqing
+            distribute: beibei
+
     skills:
-        frontend: ["HTML | Markdown", "CSS | SASS", "JS | jQuery", "Bootstrap"]
-        backend: ["PHP", "MySQL", "Redis", "Regex", "Laravel", "OSC"]
-        tools: ["Sublime Text", "Git | Github", "Linux", "Jekyll | Liquid"]
+        speciality: [“EEG data analysis”，“spss”,"R","Matlab","Python" ]
+  
 
 collections:
     qqGroupGuide:
