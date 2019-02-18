@@ -19,7 +19,7 @@ excerpt_separator: "[-----]"
 mode: product
 url: https://kangkang0820.github.io/
 devurl: http://localhost:4000/
-name: kang
+name: KangKang
 title: kangkang | As long as you live, so long will you struggle
 description: "yukang's personal weblog, on coding or such stuff"
 
@@ -31,7 +31,7 @@ my:
     contact:
         qq: 2500765857
         email: 2500765857@qq.com
-        tell:  13028325825
+        tel:  13028325825
         github: http://www.github.com/kangkang0820
         qzone: http://2500765857.qzone.qq.com
         address:
