@@ -185,4 +185,5 @@ Python机器学习教程<https://elitedatascience.com/python-machine-learning-tu
 
 使用Python进行数据的可视化<https://elitedatascience.com/python-seaborn-tutorial>
 
-# 数据清洗
+# Chapter 3 数据清洗
+## 好的数据 > 漂亮的算法
