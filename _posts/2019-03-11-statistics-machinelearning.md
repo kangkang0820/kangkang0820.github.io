@@ -187,3 +187,47 @@ Python机器学习教程<https://elitedatascience.com/python-machine-learning-tu
 
 # Chapter 3 数据清洗
 ## 好的数据 > 漂亮的算法
+数据清洗是一项每个人都做过但是又没有人愿意讨论的工作。的确，在机器学习中甚至都不存在这个部分。但是合适的数据是决定你的项目生死存亡的关键。专业的数据分析师经常会在这块花大量的时间和精力。因为在机器学习领域有一个非常简单的法则：好的数据大于漂亮的算法。实际上，假如你拥有合适的干净的数据，那么即使非常简单的算法也能从数据中得到深刻的结论。很显然，不同类型的数据要求不同的清洗方法，本文所介绍的系统的方法可以作为一个很好的起点。
+## 删除不想要的观测值（Remove unwanted observations）
+数据清洗的第一步是从你的数据集中清除不想要的观测值，这其中包括重复的（duplicate）或者不相关（irrelevant）的观测值。
+
+__重复的观测值（Duplicate observations）__
+重复的观测值经常产生于数据收集过程中：
+
+- 从多个地方合并数据集
+- 获取数据（Scrape data）
+- 接受客户或其他地方的数据
+
+__不相关的观测值（Irrelevant observations）__
+不相关的观测值是指那些与你要解决的问题不相适的数据。
+
+- 例如，如果你想要建构一个单户住宅的模型，你并不希望出现公寓类型的观测值
+
+- 同样，也是回过去查看你的探索性分析图表的绝佳时间。你可以查看分类特征的分布图，看看是否存在不应该存在的类。
+
+- 在提取特征值之前检查不相关的观测值可以避免很多麻烦。
+
+## 修复结构上的错误
+数据清洗的下一步是修复结构上的错误，结构错误是指在测量过程中、数据传输或其它过程造成的“糟糕的管理（poor housekeeping）”。
+
+例如，你可以检查拼写、大小写不一致等错误。主要是关注分类特征，你可以查看条形图。下面就是一个例子：
+
+![typos-example-before](/images/posts/20190311/typos-example-before.png)
+
+就像你看到的那样：
+
+- ‘composition’ 和 ‘Composition’ 一样
+- ‘asphalt’ 应该是 ‘Asphalt’
+- ‘shake-shingle’ 应该是 ‘Shake Shingle’
+- 'asphalt,shake-shingle' 应该是 'Shake Shingle'
+
+当我们把拼写和大小错误解决之后，类的分布就变得干净了:
+
+ ![typos-example-after](/images/posts/20190311/typos-example-after.png)
+
+ 最后，检查一下标签错误的分类，例如分开的类可能是一样的：
+
+ - 例如，如果‘N/A’和‘Not Applicable’ 是作为两个类，你可以将它们合并在一起
+ - 例如，‘IT’和‘information_techology’应该是作为一个类
+
+## 过滤掉不想要的异常值
