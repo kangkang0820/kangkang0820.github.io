@@ -321,7 +321,7 @@ __案例（房地产）__
 - 为了计算交互作用，我们可以简单的创造一个新的特征 'school_score' = 'num_schools' x 'median_school'
 
 ## 合并稀疏类（Combine Sparse Classes）
-下一个可以给我们启发的方法是分组稀疏的类。
+下一个可以给我们启发的方法是归类稀疏类。
 
 __稀疏类__ （在分类特征中）有很少的观测值。它们可能给某些机器学习的算法带来问题，并导致模型过拟合。
 
@@ -333,7 +333,7 @@ __稀疏类__ （在分类特征中）有很少的观测值。它们可能给某
 
  ![grouping-sparse-classes-before](/images/posts/20190311/grouping-sparse-classes-before.png)
 
- 首先，我们可以分组相似的类。在上面的图表中，'exterior_walls'这个特征有几个类是相似的。
+ 首先，我们可以归类相似的类。在上面的图表中，'exterior_walls'这个特征有几个类是相似的。
 
  - 我们可以将‘Wood Siding’,‘Wood Shingle’ 和 ‘Wood’ 归为一个单一的类。实际上，我们可以将它们标记为‘Wood’。
 
@@ -370,3 +370,7 @@ __多余的__ 特征是指那些在特征提取过程中被其他特征替换掉
 进一步阅读：
 
 特征提取最好的练习材料 <https://elitedatascience.com/feature-engineering-best-practices>
+
+# Chapter 5 算法选择
+## 如何选择机器学习的算法
+在本节中，我们将介绍5种对于回归任务非常有效的算法，每一种算法都有对应的分类。我们没有列出一长串算法，而是尽量教你导致一些算法优于其他算法的一些非常重要的概念（例如正则化、集成，自动特征选择）。
