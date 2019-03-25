@@ -369,4 +369,4 @@ __多余的__ 特征是指那些在特征提取过程中被其他特征替换掉
 
 进一步阅读：
 
-特征提取最好的练习 <https://elitedatascience.com/feature-engineering-best-practices>
+特征提取最好的练习材料 <https://elitedatascience.com/feature-engineering-best-practices>
