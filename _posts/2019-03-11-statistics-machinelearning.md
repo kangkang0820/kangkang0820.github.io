@@ -502,3 +502,11 @@ __增强树__
 
 - 在经过适当的调优之后，它们往往能够击败许多其它类型的模型
 - 它们在调优上比随机森林更复杂
+
+进一步阅读：
+
+现代机器学习算法：优势与劣势 <https://elitedatascience.com/machine-learning-algorithms>
+
+降维算法：优势与劣势 <https://elitedatascience.com/dimensionality-reduction-algorithms>
+
+机器学习中算法偏差的平衡 <https://elitedatascience.com/bias-variance-tradeoff>
