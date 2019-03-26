@@ -377,7 +377,7 @@ __多余的__ 特征是指那些在特征提取过程中被其他特征替换掉
 ## 为什么线性回归是有缺陷的？
 为了引入一些高级算法的推理，我们从讨论基础的线性回归开始。线性回归应用得非常普遍，但是它有很大的缺陷。
 
-![noisy-sine-linear-regression](/images/posts/20190311/noisy-sine-linear-regression.jpg)
+![noisy-sine-linear-regression](/images/posts/20190311/noisy-sine-linear-regression.png)
 
 简单的线性回归模型被拟合为一条直线，在实际应用中，它们很少有派上用场的，因此大多数机器学习的问题可以考虑跳过它们。它们最大的优点就是比较容易预测和理解。但是，我们的目标并非研究数据以及写研究报告，我们的目标是建立一个能够精确预测的模型。
 
