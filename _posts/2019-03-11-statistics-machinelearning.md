@@ -510,3 +510,17 @@ __增强树__
 降维算法：优势与劣势 <https://elitedatascience.com/dimensionality-reduction-algorithms>
 
 机器学习中算法偏差的平衡 <https://elitedatascience.com/bias-variance-tradeoff>
+
+# Chapter 6 模型训练
+
+## 如何训练机器学习的模型
+
+终于，是时候训练我们的模型了！我们似乎花了一段时间才来到这一步，但是专业的数据分析师通常需要花大量时间在通往这一步的过程中：
+
+1.探索数据
+
+2.数据清洗
+
+3.提取特征
+
+再次强调：好的数据比漂亮的算法更重要。在这一章中，我你将学到如何建立模型以最大化的优化性能，同时防止过度拟合。我们会交换算法，自动的找到最佳参数。
