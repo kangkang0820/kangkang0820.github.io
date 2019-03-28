@@ -48,10 +48,12 @@ excerpt: "本文主要就是对之前我在徐老师组学习期间使用过的�
                 num1 = num1 + 1;
                C_V_data(:,:,num1) =  Data(:,:,ii) ;%change_view_data
         end
+
         if strncmp(struct.event(ii).type,'free_neutral',12)
                 num2 = num2 + 1;
                F_N_data(:,:,num2) =  Data(:,:,ii); %free_neutral_data
         end
+
         if strncmp(struct.event(ii).type,'free',11)
             num3 = num3+1;
             F_data(:,:,num3) =  Data(:,:,ii);
@@ -78,4 +80,54 @@ excerpt: "本文主要就是对之前我在徐老师组学习期间使用过的�
 end
 
 ```
-上述代码有些地方需要自己修改，除数据储存路径需要修改之外，还有几个地方需要强调：（1）在导入文件时，对被试的编号有一个判断语句，这是因为我的数据命名时，对1-9号被试采用的是01、02....09这种命名方式，因此在循环导入被试数据时，1-9的被试和10以后的被试的导入方式被分开了，如果你的数据命名方式不一样，那么此处需要改动。（2）代码中有一个 `ismenber` 的函数，这个函数是用来判断当前进入循环的被试是否包含大括号中的所有电极点，返回值中有一个bool值，如果该被试缺少括号中的电极，那么bool值就为0，否则为1，当bool值中出现了0，程序就会报错并中断，这个时候我就可以根据bool值反馈的信息对大括号中的电极点进行删改，直到所有的被试都能跑通，有时候需要对电极点和被试的数量做折中处理，当然如果一些非常重要的电极点缺失的话那就需要补电极了，关于补电极点会在后面的内容中提到。（3）
+上述代码有些地方需要自己修改，除数据储存路径需要修改之外，还有几个地方需要强调：（1）在导入文件时，对被试的编号有一个判断语句，这是因为我的数据命名时，对1-9号被试采用的是01、02....09这种命名方式，因此在循环导入被试数据时，1-9的被试和10以后的被试的导入方式被分开了，如果你的数据命名方式不一样，那么此处需要改动。（2）代码中有一个 `ismenber` 的函数，这个函数是用来判断当前进入循环的被试是否包含大括号中的所有电极点，返回值中有一个bool值，如果该被试缺少括号中的电极，那么bool值就为0，否则为1，当bool值中出现了0，程序就会报错并中断，这个时候我就可以根据bool值反馈的信息对大括号中的电极点进行删改，直到所有的被试都能跑通，有时候需要对电极点和被试的数量做折中处理，当然如果一些非常重要的电极点缺失的话那就需要补电极了，关于补电极点会在后面的内容中提到。此外，在脑网络分析中有21个常见的电极点需要纳入分析（这21个电极点见下图）。（3）后面的标签循环中的Mark需要改为自己的Mark，在我的实验中一共有四种Mark（`change_view`,`free_neutral`,`free`,`suppression`），因此我们用了四个判断语句。（4）最后，在保存文件中需要在前面的保存路径中新建几个文件夹（根据你Mark的种类，有几种Mark就建立几个文件夹）。
+
+常见的21个电极点：
+ ![标准21导](/images/posts/20190311/标准21导.png)
+
+# 2.计算PLV
+将条件分完组后，就开始针对每种条件计算plv了。代码如下（代码名称`plv.m`）：
+```matlab
+%%  **********************************************   %%
+%% 作者：LYY
+%% 功能：基于plv，计算几类数据的网络属性，
+close all;
+clear all;
+clc;
+
+File = 'E:\yukang\68_condition\F_N_data\androgynous_male\';
+File1 = dir(File);
+% Emo = {'C_V','F_N','F','S'};
+% for e = 1:4
+%     File2 = dir(['C:\Users\uestc\Desktop\西南同学\raw_data\']) ;
+    S = length(File1) -2 ;
+%     Emo1 = {'CV','FN','F','S'};
+    for Sub = 1:S
+        if Sub <=9;
+%             eval(['load',' ',File ,num2str(Emo{e}) ,'_data','\',num2str(Emo1{e}),'data_0',num2str(Sub),'.mat']);
+            eval(['load',' ',File ,'FNdata_0',num2str(Sub),'.mat']);
+        else
+            eval(['load',' ',File ,'FNdata_',num2str(Sub),'.mat']);
+        end
+        %%
+        Data = F_N_data(:,325:574,:);
+        %% 幅值计算，只计算中央顶区三通道（CP1（12）,CPz（26）,CP2（27））的幅值
+%         Data1 = mean(Data,3);%trail数平均
+%         data =mean(Data1([9,20:21],:),1);%平均3个导联
+%         ampLpp(Sub) = mean(data);%计算出所有被试在200-1700ms间的平均(最大)幅值
+%         save(['D:\61_plv_amp\amp_data\FN_amp.mat'],'ampLpp');
+        Fs =250;
+        AAA = [];
+        for k= 1:size(Data,3)%trail的个数
+            AAA = Data(:,:,k);%，
+            CorrMatrix(:,:,k) = Connect_PLV(AAA);%计算plv
+        end
+        plvMatrix1 = mean(CorrMatrix,3);
+        plvMatrix(:,:,Sub) = plvMatrix1;
+
+        save(['E:\yukang\68_plv_data\FN_plv2\androgynous_male\FN_plv.mat'],'plvMatrix');
+    end
+% end
+
+```
+注意：这个代码是需要对每个条件分开跑，代码计算的结果包括幅值和plv,这里之所以计算幅值，是因为后面我计算了幅值和网络属性的相关。
