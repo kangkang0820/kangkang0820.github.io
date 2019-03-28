@@ -1,5 +1,5 @@
 ---
-title: "机器学习之统计基础"
+title: "机器学习入门"
 layout: post
 category: ML
 tags: [机器学习,算法,基本术语]
