@@ -5,7 +5,7 @@ category: EEG
 tags: [matlab脚本,EEG,脑网络分析]
 excerpt: "本文主要就是对之前我在徐老师组学习期间使用过的代码的一个整理，大家以后如果需要做脑网络分析的，可以根据文中描述的步骤使用这些代码"
 ---
-2018年5月-7月，袁老师安排我去电子科大跟随徐老师学习脑电数据挖掘，徐老师组主要用的是EEG脑网络分析方法，因此在科大的两个多月的时间里主要就是学习了如何用matlab脚本来进行脑电的脑网络。本文主要就是对之前我在徐老师组学习期间使用过的代码的一个整理，大家以后如果需要做脑网络分析的，可以根据文中描述的步骤使用这些代码（代码都放在实验室的私有云上面了，路径：/Documents/ERP and EEG/ACR脑电数据处理代码集/4.EEG脑网络分析代码）。
+2018年5月-7月，袁老师安排我去电子科大跟随徐老师学习脑电数据挖掘，徐老师组主要用的是EEG脑网络分析方法，因此在科大的两个多月的时间里主要就是学习了如何用matlab脚本来进行脑电的脑网络。本文主要就是对之前我在徐老师组学习期间使用过的代码的一个整理，大家以后如果需要做脑网络分析的，可以根据文中描述的步骤使用这些代码（代码都放在实验室的私有云上面了，路径：` /Documents/ERP and EEG/ACR脑电数据处理代码集/4.EEG脑网络分析代码`）。
 
 # 1.预处理
 此处的预处理不是针对原始数据的预处理，而是对已经预处理完的数据而言的。代买如下：
@@ -17,21 +17,21 @@ excerpt: "本文主要就是对之前我在徐老师组学习期间使用过的�
  clc
 % path = 'C:\Users\Administrator\Desktop\ERP_yukang';
 % filename = dir(path);%加载路径（文件）
- File = 'D:\61_all\';
- savepath = 'D:\61_conditions\' ;%这里改
- freqband = [0.02 40];
+ File = 'D:\61_all\'; %这里改为数据导入路径
+ savepath = 'D:\61_conditions\' ;%这里改为数据导出路径
+% freqband = [0.02 40];
 % freqband = [0.02 5];
  max_order = 99;
- for sub = 1:61;
+ for sub = 1:61;%这里改为自己数据中被试的数量
     %     cnt = loadcnt1([path, '\', filename(sub).name]);%加载cnt数据
     %     a = pop_loadset('C:\Users\Administrator\Desktop\ERP_yukang\sub1_erp.set');
 %     eval(['pop_loadset',' ',File,'sub',num2str(sub),'_erp.set']); %加载rest数据
 %     eval(['pop_loadset',' ',File,'sub_0',num2str(sub),'.mat']); %加载rest数据
-    if sub<= 9;
+  `  if sub<= 9;
            eval(['pop_loadset',' ',File,'sub_0',num2str(sub),'.mat']); %加载rest数据
     else
       eval(['pop_loadset',' ',File,'sub_',num2str(sub),'.mat']);
-    end
+    end     `
     struct = ans;
     Data1 = ans.data;
     %% 去导联,得到准确的数据
@@ -78,3 +78,4 @@ excerpt: "本文主要就是对之前我在徐老师组学习期间使用过的�
 end
 
 ```
+上述代码有些地方需要自己修改，除数据储存路径需要修改之外，还有几个地方需要强调：（1）
