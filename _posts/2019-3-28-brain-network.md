@@ -130,4 +130,93 @@ File1 = dir(File);
 % end
 
 ```
-注意：这个代码是需要对每个条件分开跑，代码计算的结果包括幅值和plv,这里之所以计算幅值，是因为后面我计算了幅值和网络属性的相关。
+注意：（1）这个代码是需要对每个条件分开跑，代码计算的结果包括幅值和plv,这里之所以计算幅值，是因为后面我计算了幅值和网络属性的相关。（2）在用这个代码之前，需要在你的路径中添加 `Connect_PLV`   `PhaseSI` `data_psi`三个函数
+
+# 3. 画网络拓扑图
+接下来，就开始画网络拓扑图了，使用的代码是 `plot_network.m` 。
+```matlab
+
+%% Ttest2画出网络拓扑图
+clear all
+% close all
+clc
+% file = 'F:\p300\taskState_result\a_task_data\c_plvData\HC_Data\';
+% file = 'F:\p300\result\rest_data\coh\cohNomal\';
+% Sub_File = dir([file,'*.mat']);
+% nomal_data = [];
+% for Sub = 1:length(Sub_File)
+%     load([file,Sub_File(Sub).name]);
+% %   eval(['load',' ',File,'Re_Coh0_',num2str(Sub),'.mat']);
+%     nomal_data(:,:,Sub) = plvMatrix1;
+% %     nomal_data(:,:,Sub) =Re_Coh0 ;
+% end
+% nomal_data(:,:,[5,14]) = [];
+% % nomal_data(:,:,[4,5,7,14,15,19]) = [];
+% file = 'F:\p300\taskState_result\a_task_data\c_plvData\SZ_Data\';
+% % file = 'F:\p300\result\rest_data\coh\cohSch\';
+% Sub_File = dir([file,'*.mat']);
+% sch_data = [];
+% for Sub = 1:length(Sub_File)%length(Sub_File)
+%     load([file,Sub_File(Sub).name]);
+% %   eval(['load',' ',File,'Re_Coh0_',num2str(Sub),'.mat']);
+%     sch_data(:,:,Sub) = plvMatrix1;
+% %     sch_data(:,:,Sub) = Re_Coh0;
+% end
+% sch_data(:,:,[6,8,12,16])=[];
+% % sch_data(:,:,16)=[];
+% % mkdir('F:\p300\result\sch\sch_data');
+% % save('F:\p300\result\sch\sch_data_1','sch_data');
+
+load E:\yukang\68_plv_data\F_plv2\androgynous_female\F_plv.mat
+FN_data = plvMatrix;
+
+load E:\yukang\68_plv_data\F_plv2\androgynous_male\F_plv.mat
+F_data = plvMatrix;
+
+[m,n] = size(F_data(:,:,1));%得到导联数据
+H=[];
+P=[];
+for i = 1:m
+    for j = 1:n
+        %[h,p,ci,stats] =ttest2(nomal_data(i,j,:),sch_data(i,j,:),0.05,'left');
+         [H_right(i,j),P_right(i,j)] = ttest2(FN_data(i,j,:),F_data(i,j,:),0.001,'right');
+         [H_left(i,j),P_left(i,j)] = ttest2(FN_data(i,j,:),F_data(i,j,:),0.001,'left');%正常人值大于病人的值
+    end
+end
+
+H_left= -H_left;%left为红（根据H值来画的）
+H=squeeze(H_left+H_right);%矩阵相加
+
+% SaveFile = 'F:\p300\taskState_result\a_task_data\c_plvData\plot\';
+% mkdir(SaveFile);  
+    %%%%%%%%%%%%%%%画出有效连接%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    k1 = length(H(:,:));
+    f_name1 = '';   %标题
+%     channel ={'AF3','Fz','F1','F3','F7','FCz','Cz','C1','C3','CP1','CP3','Pz','P3','P7','Oz','O1','AF4','F2','F4','F8','C2','C4','CPz','CP2','CP4','P4','P8','POz','O2'};
+     channel ={'AF3','Fz','F1','F3','FCz','Cz','C1','C3','CP1','CP3','Pz','P3','Oz','O1','AF4','F2','F4','C2','C4','CPz','CP2','CP4','P4','POz','O2'};
+    [x,y,loc]=textread('eeg_loc.txt','%*d %f %f %s',-1);
+    a = 0;
+    for i = 1:length(channel)
+        for j = 1:length(loc)
+            if strcmp(channel{i},loc{j})
+                a = a+1;
+                num(a) = j;
+            end
+        end
+    end
+    x1 = x(num);
+    y1 = y(num);
+    Brain_Graphic(H(:,:),k1,f_name1,channel,x1',-y1');
+    title(f_name1,'fontsize',12,'fontweight','bold');
+    fig_name = ['testTask'];
+%     saveas(1,[SaveFile, fig_name,'.jpg']);
+%     saveas(gcf,'F:\p300\taskState_result\a_task_data\c_plvData\plot\testTask.eps');
+%     close figure 1;
+
+
+```
+注意：（1）在跑该代码之前，你需要在matlab的路径中添加`Brain_Graphic.m`这个函数；（2）另外，在该代码的文件夹下面需要放一个txt文档，里面是你用到的电极的坐标信息（电极的坐标信息可以通过eeglab导出）；（3）该代码的导入数据为上一步算完的plv数据，导入的时候，仍旧是按照不同的条件分组导入；（4）channel后面的电极点和预处理代码中的电极保持一致；（5）这一步中可能出现很多问题，画出的拓扑图很可能是奇形怪状，主要改的地方是`Brain_Graphic.m`函数以及txt文档中的内容。
+画出来的正常拓扑图应该是这样的：
+ ![典型男中性负性对比拓扑图](/images/posts/20190328/典型男中性负性对比拓扑图.png)
+
+# 计算网络属性图
